@@ -4,8 +4,8 @@ from transformers import AutoTokenizer, AutoConfig
 import numpy as np
 from scipy.special import softmax
 import streamlit as st
+st.title("Tho Tran - Milestone1")
 # Preprocess text (username and link placeholders)
-st.title("Tho Tran Milestone2")
 def preprocess(text):
     new_text = []
     for t in text.split(" "):
@@ -38,4 +38,7 @@ ranking = ranking[::-1]
 for i in range(scores.shape[0]):
     l = config.id2label[ranking[i]]
     s = scores[ranking[i]]
-    print(f"{i+1}) {l} {np.round(float(s), 4)}")
+    # print(f"{i+1}) {l} {np.round(float(s), 4)}")
+    st.write(l,np.round(float(s),4))
+
+st.write("choosen model is https://huggingface.co/cardiffnlp/twitter-xlm-roberta-base-sentiment?text=T%27estimo%21")
