@@ -3,8 +3,9 @@ from transformers import TFAutoModelForSequenceClassification
 from transformers import AutoTokenizer, AutoConfig
 import numpy as np
 from scipy.special import softmax
-
+import streamlit as st
 # Preprocess text (username and link placeholders)
+st.title("Tho Tran Milestone2")
 def preprocess(text):
     new_text = []
     for t in text.split(" "):
@@ -21,13 +22,15 @@ config = AutoConfig.from_pretrained(MODEL)
 # PT
 model = AutoModelForSequenceClassification.from_pretrained(MODEL)
 model.save_pretrained(MODEL)
+tokenizer.save_pretrained(MODEL)
 
-text = "Good night 😊"
+text = st.text_input("Enter text here:","I love you")
 text = preprocess(text)
 encoded_input = tokenizer(text, return_tensors='pt')
 output = model(**encoded_input)
 scores = output[0][0].detach().numpy()
 scores = softmax(scores)
+
 
 # Print labels and scores
 ranking = np.argsort(scores)
