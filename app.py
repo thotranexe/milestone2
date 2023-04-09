@@ -4,7 +4,7 @@ from transformers import AutoTokenizer, AutoConfig
 import numpy as np
 from scipy.special import softmax
 import streamlit as st
-st.title("Tho Tran - Milestone1")
+st.title("Tho Tran - Milestone2")
 # Preprocess text (username and link placeholders)
 def preprocess(text):
     new_text = []
